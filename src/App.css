@@ -1,3 +1,8 @@
+body {
+  background-color: #34495e;
+  color: white;
+}
+
 .App {
   text-align: center;
 }
@@ -21,6 +26,49 @@
 
 .App-link {
   color: #61dafb;
+}
+
+.movie-list {
+  overflow: auto;
+  height: 250px;
+  white-space: nowrap;
+}
+
+.movie-tile {
+  display: inline-block;
+  height: 250px;
+  width: 150px;
+  margin:10px 10px;
+  background-size: cover;
+}
+
+.movie-backdrop {
+  height: 500px;
+  width: auto;
+  background-color: white;
+  background-size: cover;
+  background-position: 50%;
+  position: relative;
+}
+
+.movie-deets {
+  position: absolute;
+  top: 50%;
+  height: 50%;
+  width: 100%;
+  background-color: rgba(1,1,1,0.5);
+  box-shadow: -1em -0.1em 2em black;
+  text-align: left;
+}
+
+.movie-deets h1 {
+  font-size: 3em;
+
+
+}
+
+.movie-tile:hover {
+  box-shadow: 0.2em 0.2em 1em grey;
 }
 
 @keyframes App-logo-spin {
