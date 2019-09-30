@@ -1,5 +1,5 @@
 body {
-  background-color: #34495e;
+  background-color: #262626;
   color: white;
 }
 
@@ -28,6 +28,10 @@ body {
   color: #61dafb;
 }
 
+.banner {
+  height: 15%;
+}
+
 .movie-list {
   overflow: auto;
   height: 250px;
@@ -43,7 +47,7 @@ body {
 }
 
 .movie-backdrop {
-  height: 500px;
+  height: 450px;
   width: auto;
   background-color: white;
   background-size: cover;

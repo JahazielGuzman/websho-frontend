@@ -8,8 +8,18 @@ class MovieTile extends Component {
 
   render() {
     return (
-      <span className="movie-tile" onClick={() => this.props.showMovie(this.props.movie)} style={{backgroundImage: `url(${this.props.movie.poster})`}}>
-      </span>
+      <React.Fragment>
+        <h1>{this.props.cat}</h1>
+        <div className="movie-list">
+          {
+            this.props.movies.map(
+              mov =>
+              <span className="movie-tile" key={mov.id} onClick={() => this.props.showMovie(mov)} style={{backgroundImage: `url(${mov.poster})`}}>
+              </span>
+            )
+          }
+        </div>
+      </React.Fragment>
     );
   }
 }

@@ -1,19 +1,68 @@
 import React, { Component } from 'react';
 import Youtube from 'react-youtube';
 import logo from './logo.svg';
-import MovieTile from './components/movieTile'
 import MovieDetail from './components/movieDetails'
+import ShowSignup from './components/ShowSignup'
+import Banner from './components/Banner'
+import MovieRecommendation from './components/MovieRecommendation'
 import './App.css';
+const URL = "http://localhost:3000";
 
 class App extends Component {
 
   state = {
-    movies: [],
+
     nowPlaying: null,
     movieDeets: null,
     player: null,
     iframe: null,
-    user: null
+    user: null,
+    showLogin: false
+  }
+
+  login = (formInfo) => {
+
+    fetch(`${URL}/login`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify(formInfo)
+    })
+    .then(res => res.json())
+    .then(data => {
+      if (data.token) {
+        localStorage.setItem('token', data.token.split(' ')[1]);
+        this.setState({user: data.user, showLogin: false});
+      }
+      else
+        alert("sorry we could not log you in");
+     });
+  }
+
+  signup = (formInfo) => {
+    // fetch to the /signup route
+    fetch(`${URL}/signup`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        "Accept" : "application/json"
+      },
+      body: JSON.stringify(formInfo)
+    })
+    .then(res => res.json())
+    .then(data => {
+      if (data.token) {
+        localStorage.setItem('token', data.token.split(' ')[1]);
+        this.setState({user: data.user, showLogin: false});
+      }
+      else
+        alert("sorry we could sign you up");
+     });
+  }
+
+  logout = () => {
+    this.setState({user: null});
   }
 
   showMovie = (movie) => {
@@ -21,7 +70,27 @@ class App extends Component {
   }
 
   playMovie = (movie) => {
-    this.setState({nowPlaying: movie.trailer});
+    // check if user is authenticated
+    if (this.state.user) {
+      // if is authenticated then play movie
+      this.setState({nowPlaying: movie.trailer});
+      // now we want to do a fetch request
+      // to an endpoint that creates a viewing, send the token and the movie id.
+      // get back a confirmation that we go it to work
+      fetch(`${URL}/viewings`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          "Accept": "application/json",
+          "Authorization": localStorage.getItem('token')
+        },
+        body: JSON.stringify({movie_id: movie.id})
+      })
+    }
+    else {
+      // otherwise then we need to ask them to sign in
+      this.setState({showLogin: true});
+    }
   }
 
   stopPlaying = (player) => {
@@ -44,7 +113,7 @@ class App extends Component {
     document.addEventListener("fullscreenchange", function() {
       if (!document.fullscreenElement)
         this.stopPlaying(player);
-      }.bind(this), false);
+    }.bind(this), false);
 
     document.addEventListener("msfullscreenchange", function() {
       if (!document.msFullscreenElement) {
@@ -66,13 +135,6 @@ class App extends Component {
 
   }
 
-  componentDidMount() {
-    fetch('http://localhost:3000/newest_releases')
-    .then(res => res.json())
-    .then(movies => {
-        this.setState({movies: movies, movieDeets: movies[0]});
-    });
-  }
 
 // function setupListener (){
 // $('button').addEventListener('click', playFullscreen);
@@ -87,9 +149,10 @@ class App extends Component {
     }
 
     return (
-      (this.state.user == null) ?
-      <div>login / signup </div> :
+      (this.state.showLogin) ?
+      <ShowSignup onLogin={this.login} onSignup={this.signup} /> :
       <div className="App">
+        <Banner user={this.state.user} logout={this.logout}/>
         {
           (this.state.nowPlaying == null && this.state.movieDeets != null) ?
           <MovieDetail movie={this.state.movieDeets} playMovie={this.playMovie} />
@@ -102,12 +165,7 @@ class App extends Component {
             onStateChange={this._onStateChange}
             />
         }
-        <div>
-          <h1>New Releases</h1>
-          <div className="movie-list">
-            { this.state.movies.map(mov => <MovieTile key={mov.id} showMovie={this.showMovie} movie={mov}/>) }
-          </div>
-        </div>
+        <MovieRecommendation user={this.state.user} showMovie={this.showMovie}/>
       </div>
     );
   }
