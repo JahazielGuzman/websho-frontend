@@ -5,6 +5,7 @@ import MovieDetail from './components/movieDetails'
 import ShowSignup from './components/ShowSignup'
 import Banner from './components/Banner'
 import MovieRecommendation from './components/MovieRecommendation'
+import SearchResults from './components/SearchResults'
 import './App.css';
 const URL = "http://localhost:3000";
 
@@ -17,7 +18,9 @@ class App extends Component {
     player: null,
     iframe: null,
     user: null,
-    showLogin: false
+    showLogin: false,
+    search_query: "",
+    showSearch: false
   }
 
   componentDidMount() {
@@ -55,6 +58,32 @@ class App extends Component {
       else
         alert("sorry we could not log you in");
      });
+  }
+
+  showSuggestions = () => {
+    // fetch(`${URL}/search_short`, {
+    //   method: "POST",
+    //   headers: {
+    //     "Content-Type": "application/json",
+    //     "Accept": "application/json",
+    //     "Authorization": localStorage.setItem('token', data.token.split(' ')[1])
+    //   },
+    //   body: JSON.stringify(this.state.search_query)
+    // })
+    // .then(res => res.json())
+    // .then(suggestions => )
+  }
+
+  onSearchSubmit = (search_query) => {
+    this.setState({search_query: search_query, showSearch: true});
+  }
+
+  exitSearch = () => {
+    this.setState({search_query: "", showSearch: false});
+  }
+
+  searchResults = () => {
+
   }
 
   signup = (formInfo) => {
@@ -161,28 +190,29 @@ class App extends Component {
   render () {
 
     let opts = {
-      height: 0,
-      width: 0
+      height: 300,
+      width: 300
     }
 
     return (
-      (this.state.showLogin) ?
-      <ShowSignup onLogin={this.login} onSignup={this.signup} /> :
       <div className="App">
-        <Banner user={this.state.user} logout={this.logout}/>
+        <Banner user={this.state.user} logout={this.logout} onSearchSubmit={this.onSearchSubmit} exitSearch={this.exitSearch}/>
         {
-          (this.state.nowPlaying == null && this.state.movieDeets != null) ?
-          <MovieDetail movie={this.state.movieDeets} playMovie={this.playMovie} />
+          this.state.showLogin || this.state.showSearch ?
+          this.state.showSearch ? <SearchResults searchQuery={this.state.search_query}/> : <ShowSignup onLogin={this.login} onSignup={this.signup} />
           :
-          <Youtube
-            id="player"
-            videoId={this.state.nowPlaying ? this.state.nowPlaying : ''}
-            opts={opts}
-            onReady={this._onReady}
-            onStateChange={this._onStateChange}
+            this.state.nowPlaying == null && this.state.movieDeets != null ?
+            <MovieDetail movie={this.state.movieDeets} playMovie={this.playMovie} />
+            :
+            <Youtube
+              id="player"
+              videoId={this.state.nowPlaying ? this.state.nowPlaying : ''}
+              opts={opts}
+              onReady={this._onReady}
+              onStateChange={this._onStateChange}
             />
+          <MovieRecommendation user={this.state.user} showMovie={this.showMovie}/>
         }
-        <MovieRecommendation user={this.state.user} showMovie={this.showMovie}/>
       </div>
     );
   }

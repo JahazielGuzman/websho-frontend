@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import SearchBar from './SearchBar'
 import '../App.css';
 
 class Banner extends Component {
@@ -10,9 +11,7 @@ class Banner extends Component {
     return (
       <header className="banner">
         <span>logo</span>
-        <span>
-          <input type="text" placeholder="search" />
-        </span>
+        {this.props.user ? <SearchBar onSearchSubmit={this.props.onSearchSubmit} exitSearch={this.props.exitSearch} /> : null}
         <span>
           {this.props.user ? this.props.user.username : ''}
         </span>
