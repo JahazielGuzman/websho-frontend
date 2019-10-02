@@ -7,7 +7,7 @@ function MovieDetail(props) {
       <div className="movie-backdrop" style={{backgroundImage: `url(${props.movie.backdrop})`}}>
         <div className="movie-deets">
           <h1>{props.movie.title}</h1>
-          <h4>{props.movie.release.split('-')[0]}</h4>
+          <h4>{props.movie.release ? props.movie.release.split('-')[0] : null}</h4>
           <p>{props.movie.overview}</p>
           <button onClick={() => props.playMovie(props.movie)}>play movie</button>
         </div>

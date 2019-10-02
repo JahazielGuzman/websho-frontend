@@ -24,7 +24,7 @@ class MovieRecommendation extends Component {
 
         if (this.props.user) {
           // if the user exists then return the fetch for recently_viewed newestMovies
-          return fetch(`${URL}/recently_viewed`, {
+          return fetch(`${URL}/user_custom_movies`, {
             headers: {
               "Content-Type": "application/json",
               "Accept": "application/json",

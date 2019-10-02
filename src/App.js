@@ -20,6 +20,23 @@ class App extends Component {
     showLogin: false
   }
 
+  componentDidMount() {
+    if (localStorage.getItem('token')) {
+      fetch(`${URL}/establish_session`, {
+        headers: {
+          "Accept": "application/json",
+          "Authorization": localStorage.getItem('token')
+        }
+      })
+      .then(res => res.json())
+      .then(data => {
+          this.setState({user: data.user, showLogin: false});
+       });
+    }
+    else
+      alert("sorry we could not log you in");
+  }
+
   login = (formInfo) => {
 
     fetch(`${URL}/login`, {
