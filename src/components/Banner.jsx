@@ -10,20 +10,24 @@ class Banner extends Component {
   render() {
     return (
       <header className="banner">
-        <span>logo</span>
-        {this.props.user ? <SearchBar onSearchSubmit={this.props.onSearchSubmit} exitSearch={this.props.exitSearch} /> : null}
-        <span>
-          {this.props.user ? this.props.user.username : ''}
-        </span>
-        <span>
-          {
-          (this.props.user) ?
-            <button onClick={this.props.logout}>
-              logout
-            </button>:
-            <span></span>
-          }
-        </span>
+        <div className="logo">Websho&apos;</div>
+        {this.props.user ? <SearchBar onSearchSubmit={this.props.onSearchSubmit} /> : null}
+        <div className="user-panel">
+          <span>
+            {this.props.user ? this.props.user.username : ''}
+          </span>
+          <span>
+            {
+              (this.props.user) ?
+              <button onClick={this.props.logout}>
+                logout
+              </button>:
+              <button onClick={this.props.onClickSignIn}>
+                login
+              </button>
+            }
+          </span>
+        </div>
       </header>
     );
   }

@@ -28,13 +28,75 @@ body {
   color: #61dafb;
 }
 
+.play-button {
+  background-color: #403f3f;
+  width: 8em;
+  color: red;
+  font-size: 1em;
+  font-weight: bold;
+  border-radius: 5px;
+  border: 0px;
+}
+
 .banner {
-  height: 15%;
+  min-height:  20px;
+  position: relative;
+  padding: 0.5%;
+}
+
+.logo {
+  font-family: 'Ultra', serif;
+  color: #106bcc;
+  float: left;
+  position: absolute;
+  left: 1%;
+}
+
+.search-section {
+  position: relative;
+}
+
+.exit-search {
+  position: absolute;
+  left: 1%;
+  background-color: #262626;
+  border: #262626;
+  color: white;
+  font-size: 2em;
+}
+
+.exit-search:hover {
+  color: grey;
+}
+
+.search-box {
+  float: left;
+  position: absolute;
+  left: 40%;
+}
+
+.search-bar {
+  background-color: black;
+  border: 1px solid black;
+  border-radius: 5px;
+  color: white;
+}
+
+.search-button {
+  background-color: black;
+  border: 1px solid black;
+  border-radius: 5px;
+}
+
+.user-panel {
+  float: left;
+  position: absolute;
+  left: 90%;
 }
 
 .movie-list {
   overflow: auto;
-  height: 250px;
+  height: 280px;
   white-space: nowrap;
 }
 
@@ -57,6 +119,7 @@ body {
 
 .movie-deets {
   position: absolute;
+  padding: 0px 10px;
   top: 50%;
   height: 50%;
   width: 100%;

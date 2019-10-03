@@ -20,7 +20,8 @@ class App extends Component {
     user: null,
     showLogin: false,
     search_query: "",
-    showSearch: false
+    showSearch: false,
+    resultList: {}
   }
 
   componentDidMount() {
@@ -75,10 +76,22 @@ class App extends Component {
   }
 
   onSearchSubmit = (search_query) => {
-    this.setState({search_query: search_query, showSearch: true});
+    this.setState({search_query: search_query, showSearch: true})
+    fetch(`${URL}/search_movies`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        "Accept": "application/json"
+      },
+      body: JSON.stringify({"search_query": search_query})
+    })
+    .then(res => res.json())
+    .then( suggestions => this.setState({resultList: suggestions}) )
   }
 
-  exitSearch = () => {
+  exitSearch = (e) => {
+    e.preventDefault();
+    console.log('exiting...')
     this.setState({search_query: "", showSearch: false});
   }
 
@@ -109,6 +122,11 @@ class App extends Component {
 
   logout = () => {
     this.setState({user: null});
+    localStorage.setItem('token', null)
+  }
+
+  onClickSignIn = () => {
+    this.setState({showLogin: true});
   }
 
   showMovie = (movie) => {
@@ -119,7 +137,14 @@ class App extends Component {
     // check if user is authenticated
     if (this.state.user) {
       // if is authenticated then play movie
-      this.setState({nowPlaying: movie.trailer});
+      console.log(movie.original_id)
+      fetch(`https://api.themoviedb.org/3/movie/${movie.original_id}/videos?api_key=4d2e28e881665d007404dcd57a7dc4f8&language=en-US`, {
+        headers: {
+          "Accept": "application/json"
+        }
+      })
+      .then(res => res.json())
+      .then(trailer => this.setState({nowPlaying: trailer.results[0].key}) )
       // now we want to do a fetch request
       // to an endpoint that creates a viewing, send the token and the movie id.
       // get back a confirmation that we go it to work
@@ -185,33 +210,48 @@ class App extends Component {
 // function setupListener (){
 // $('button').addEventListener('click', playFullscreen);
 // }
-
-
-  render () {
+  showYoutube() {
 
     let opts = {
       height: 300,
       width: 300
     }
 
+    if (this.state.nowPlaying == null) {
+      if (this.state.movieDeets != null)
+        return (
+            <MovieDetail movie={this.state.movieDeets} playMovie={this.playMovie} />
+        )
+    }
+    else
+    return <Youtube
+      id="player"
+      videoId={this.state.nowPlaying ? this.state.nowPlaying : ''}
+      opts={opts}
+      onReady={this._onReady}
+      onStateChange={this._onStateChange}
+    />
+  }
+
+
+  render () {
+
+
     return (
       <div className="App">
-        <Banner user={this.state.user} logout={this.logout} onSearchSubmit={this.onSearchSubmit} exitSearch={this.exitSearch}/>
+        <Banner user={this.state.user} logout={this.logout} onSearchSubmit={this.onSearchSubmit} onClickSignIn={this.onClickSignIn}/>
         {
           this.state.showLogin || this.state.showSearch ?
-          this.state.showSearch ? <SearchResults searchQuery={this.state.search_query}/> : <ShowSignup onLogin={this.login} onSignup={this.signup} />
+          this.state.showSearch ?
+          <SearchResults searchQuery={this.state.search_query} exitSearch={this.exitSearch} resultList={this.state.resultList}/>
           :
-            this.state.nowPlaying == null && this.state.movieDeets != null ?
-            <MovieDetail movie={this.state.movieDeets} playMovie={this.playMovie} />
-            :
-            <Youtube
-              id="player"
-              videoId={this.state.nowPlaying ? this.state.nowPlaying : ''}
-              opts={opts}
-              onReady={this._onReady}
-              onStateChange={this._onStateChange}
-            />
+          <ShowSignup onLogin={this.login} onSignup={this.signup} />
+        :
+        <React.Fragment>
+          {this.showYoutube()}
           <MovieRecommendation user={this.state.user} showMovie={this.showMovie}/>
+        </React.Fragment>
+
         }
       </div>
     );

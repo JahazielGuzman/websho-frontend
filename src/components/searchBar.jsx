@@ -16,7 +16,7 @@ class SearchBar extends Component {
 
     return (
 
-      <span>
+      <div className="search-box">
       <form
       onSubmit={(e) => {
           e.preventDefault();
@@ -24,15 +24,16 @@ class SearchBar extends Component {
         }
       }>
       <input
+      className="search-bar"
       type="text"
       placeholder="search"
       onChange={(e) => {
         this.setState({searchInput: e.target.value})
       }}
       />
-      <button>search</button>
+    <button className="search-button">&#128269;</button>
       </form>
-      </span>
+    </div>
     )
   }
 }
