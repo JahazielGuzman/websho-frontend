@@ -15,8 +15,9 @@ class ShowSignup extends Component {
 
   render() {
     return (
-      <div>
+      <div className="user-box">
         <form
+          className="login-box"
         onSubmit={
           (event) =>  {
             event.preventDefault();
@@ -40,6 +41,7 @@ class ShowSignup extends Component {
           <button>Login</button>
         </form>
         <form
+          className="signup-box"
           onSubmit={
             (event) =>  {
               event.preventDefault();
@@ -49,7 +51,7 @@ class ShowSignup extends Component {
           >
           <h1>Signup</h1>
           <label htmlFor="signup-username">username:</label>
-          <input id="signup-username" type="text" onChange={(event) => this.setState({signupUsername: event.target.value})} />
+          <input id="signup-username" type="text" maxlength="10" onChange={(event) => this.setState({signupUsername: event.target.value})} />
           <br />
           <label htmlFor="signup-name">name:</label>
           <input id="signup-name" type="text" onChange={(event) => this.setState({signupName: event.target.value})} />

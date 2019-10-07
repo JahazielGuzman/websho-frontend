@@ -1,5 +1,5 @@
 body {
-  background-color: #262626;
+  background-color: black;
   color: white;
 }
 
@@ -22,6 +22,26 @@ body {
   justify-content: center;
   font-size: calc(10px + 2vmin);
   color: white;
+}
+
+.session-change {
+  background-color: black;
+  border: 1px solid black;
+  color: white;
+}
+
+.user-box {
+  position: relative;
+}
+
+.login-box {
+  position: absolute;
+  left: 30%;
+}
+
+.signup-box {
+  position: absolute;
+  right: 30%;
 }
 
 .App-link {
@@ -91,7 +111,7 @@ body {
 .user-panel {
   float: left;
   position: absolute;
-  left: 90%;
+  left: 80%;
 }
 
 .movie-list {

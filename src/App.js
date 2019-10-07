@@ -95,8 +95,8 @@ class App extends Component {
     this.setState({search_query: "", showSearch: false});
   }
 
-  searchResults = () => {
-
+  showHome = () => {
+    this.setState({showLogin: false, showSearch: false})
   }
 
   signup = (formInfo) => {
@@ -239,11 +239,11 @@ class App extends Component {
 
     return (
       <div className="App">
-        <Banner user={this.state.user} logout={this.logout} onSearchSubmit={this.onSearchSubmit} onClickSignIn={this.onClickSignIn}/>
+        <Banner user={this.state.user} showHome={this.showHome} logout={this.logout} onSearchSubmit={this.onSearchSubmit} onClickSignIn={this.onClickSignIn}/>
         {
           this.state.showLogin || this.state.showSearch ?
           this.state.showSearch ?
-          <SearchResults searchQuery={this.state.search_query} exitSearch={this.exitSearch} resultList={this.state.resultList}/>
+          <SearchResults showMovie={this.showMovie} searchQuery={this.state.search_query} exitSearch={this.exitSearch} resultList={this.state.resultList}/>
           :
           <ShowSignup onLogin={this.login} onSignup={this.signup} />
         :

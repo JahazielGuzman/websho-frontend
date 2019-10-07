@@ -21,7 +21,7 @@ class SearchResults extends Component {
         <div>
         {
           (this.props.resultList.cat) ?
-            <MovieTile key={this.props.resultList.cat} cat={this.props.resultList.cat} showMovie={() => console.log("waddup?!")} movies={this.props.resultList.movies}/>
+            <MovieTile key={this.props.resultList.cat} cat={this.props.resultList.cat} showMovie={this.props.showMovie} movies={this.props.resultList.movies}/>
             :
           null
         }

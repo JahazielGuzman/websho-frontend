@@ -49,7 +49,10 @@ class MovieRecommendation extends Component {
       })
       .then(movies => {
         this.setState({ movies: [...this.state.movies, ...movies] });
-        this.props.showMovie(movies[0].movies[0]);
+        movies[0].movies[6] ?
+        this.props.showMovie(movies[0].movies[6]):
+        this.props.showMovie(movies[0].movies[0])
+
       })
       .catch(m => console.log(m));
     }
