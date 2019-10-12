@@ -7,6 +7,7 @@ import Banner from './components/Banner'
 import MovieRecommendation from './components/MovieRecommendation'
 import SearchResults from './components/SearchResults'
 import './App.css';
+console.log(process.env.REACT_APP_TMDB_API_KEY)
 const URL = "http://localhost:3000";
 
 class App extends Component {
@@ -15,7 +16,7 @@ class App extends Component {
 
     nowPlaying: null,
     movieDeets: null,
-    player: null,
+    updateWatched: false,
     iframe: null,
     user: null,
     showLogin: false,
@@ -37,8 +38,6 @@ class App extends Component {
           this.setState({user: data.user, showLogin: false});
        });
     }
-    else
-      alert("sorry we could not log you in");
   }
 
   login = (formInfo) => {
@@ -116,7 +115,7 @@ class App extends Component {
         this.setState({user: data.user, showLogin: false});
       }
       else
-        alert("sorry we could sign you up");
+        alert("sorry we could not sign you up");
      });
   }
 
@@ -138,7 +137,7 @@ class App extends Component {
     if (this.state.user) {
       // if is authenticated then play movie
       console.log(movie.original_id)
-      fetch(`https://api.themoviedb.org/3/movie/${movie.original_id}/videos?api_key=4d2e28e881665d007404dcd57a7dc4f8&language=en-US`, {
+      fetch(`https://api.themoviedb.org/3/movie/${movie.original_id}/videos?api_key=${process.env.REACT_APP_TMDB_API_KEY}&language=en-US`, {
         headers: {
           "Accept": "application/json"
         }
@@ -165,7 +164,7 @@ class App extends Component {
   }
 
   stopPlaying = (player) => {
-    this.setState({nowPlaying: null})
+    this.setState({nowPlaying: null, updateWatched: !this.state.updateWatched})
     player.destroy();
   }
 
@@ -249,7 +248,7 @@ class App extends Component {
         :
         <React.Fragment>
           {this.showYoutube()}
-          <MovieRecommendation user={this.state.user} showMovie={this.showMovie}/>
+          <MovieRecommendation user={this.state.user} showMovie={this.showMovie} updateWatched={this.state.updateWatched}/>
         </React.Fragment>
 
         }

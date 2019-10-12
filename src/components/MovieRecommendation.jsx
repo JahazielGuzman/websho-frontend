@@ -6,7 +6,9 @@ const URL = "http://localhost:3000";
 class MovieRecommendation extends Component {
 
     state = {
-      movies: []
+      movies: [],
+      customMovies: [],
+      allMovies: []
     }
 
     constructor(props) {
@@ -35,7 +37,6 @@ class MovieRecommendation extends Component {
             res => res.json()
             .then(
               (viewedMovies) => {
-                viewedMovies = viewedMovies.movies === [] ? [] : viewedMovies;
                 return new Promise((resolve, reject) => resolve([...viewedMovies, ...newestMovies]))
               }
             )
@@ -55,6 +56,10 @@ class MovieRecommendation extends Component {
 
       })
       .catch(m => console.log(m));
+    }
+
+    componentDidUpdate() {
+
     }
     // ******************************
     // end component did mount

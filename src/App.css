@@ -61,7 +61,8 @@ body {
 .banner {
   min-height:  20px;
   position: relative;
-  padding: 0.5%;
+  padding: 1em;
+  height: 2em;
 }
 
 .logo {
@@ -96,9 +97,10 @@ body {
 }
 
 .search-bar {
-  background-color: black;
+  background-color: #323030;
   border: 1px solid black;
   border-radius: 5px;
+  padding: 0.4em;
   color: white;
 }
 
