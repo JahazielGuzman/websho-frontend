@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import MovieTile from './movieTile'
 import '../App.css';
-const URL = "http://localhost:3000";
+
+const URL = process.env.REACT_APP_BACKEND
 
 class MovieRecommendation extends Component {
 
@@ -15,51 +16,57 @@ class MovieRecommendation extends Component {
       super(props);
     }
 
+    setMovies(list1, list2) {
+      this.setState(
+        {movies: [...list1, ...list2]},
+        () => this.state.movies[0].movies[6] ?
+          this.props.showMovie(this.state.movies[0].movies[6]):
+          this.props.showMovie(this.state.movies[0].movies[0])
+      );
+    }
+
+    getCustomMovies() {
+
+      return fetch(`${URL}/user_custom_movies`, {
+        headers: {
+          "Content-Type": "application/json",
+          "Accept": "application/json",
+          "Authorization": localStorage.getItem('token')
+        }
+      })
+
+    }
+
     // ******************************
     // start component did mount
     // ******************************
 
     componentDidMount() {
-      fetch('http://localhost:3000/movies_always_show')
+      fetch(`${URL}/movies_always_show`)
       .then(res => res.json())
-      .then(newestMovies => {
+      .then(allMovies => {
 
         if (this.props.user) {
-          // if the user exists then return the fetch for recently_viewed newestMovies
-          return fetch(`${URL}/user_custom_movies`, {
-            headers: {
-              "Content-Type": "application/json",
-              "Accept": "application/json",
-              "Authorization": localStorage.getItem('token')
-            }
-          })
-          .then(
-            res => res.json()
-            .then(
-              (viewedMovies) => {
-                return new Promise((resolve, reject) => resolve([...viewedMovies, ...newestMovies]))
-              }
+          // if the user exists then return the fetch for recently_viewed allMovies
+          this.getCustomMovies().then(res => res.json())
+          .then((customMovies) =>
+            this.setState(
+              {customMovies: customMovies, allMovies: allMovies}, 
+              () => this.setMovies(customMovies, allMovies)
             )
           )
         }
         else {
           // return the original movies that were passed in
-          return new Promise((resolve, reject) => resolve([...newestMovies]))
+          this.setState({allMovies: allMovies, movies: allMovies});
         }
 
       })
-      .then(movies => {
-        this.setState({ movies: [...this.state.movies, ...movies] });
-        movies[0].movies[6] ?
-        this.props.showMovie(movies[0].movies[6]):
-        this.props.showMovie(movies[0].movies[0])
 
-      })
-      .catch(m => console.log(m));
     }
 
     componentDidUpdate() {
-
+      
     }
     // ******************************
     // end component did mount

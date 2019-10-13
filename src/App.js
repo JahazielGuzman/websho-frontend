@@ -7,8 +7,8 @@ import Banner from './components/Banner'
 import MovieRecommendation from './components/MovieRecommendation'
 import SearchResults from './components/SearchResults'
 import './App.css';
-console.log(process.env.REACT_APP_TMDB_API_KEY)
-const URL = "http://localhost:3000";
+
+const URL = process.env.REACT_APP_BACKEND
 
 class App extends Component {
 

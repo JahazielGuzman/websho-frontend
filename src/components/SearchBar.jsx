@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import '../App.css';
-const URL = "http://localhost:3000";
+
+const URL = process.env.REACT_APP_BACKEND;
 
 class SearchBar extends Component {
 
