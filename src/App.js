@@ -16,7 +16,7 @@ class App extends Component {
 
     nowPlaying: null,
     movieDeets: null,
-    updateWatched: false,
+    didWatch: false,
     iframe: null,
     user: null,
     showLogin: false,
@@ -164,7 +164,7 @@ class App extends Component {
   }
 
   stopPlaying = (player) => {
-    this.setState({nowPlaying: null, updateWatched: !this.state.updateWatched})
+    this.setState({nowPlaying: null, didWatch: true}, () => this.setState({didWatch: false}))
     player.destroy();
   }
 
@@ -248,7 +248,7 @@ class App extends Component {
         :
         <React.Fragment>
           {this.showYoutube()}
-          <MovieRecommendation user={this.state.user} showMovie={this.showMovie} updateWatched={this.state.updateWatched}/>
+          <MovieRecommendation user={this.state.user} showMovie={this.showMovie} updateWatched={this.updateWatched} didWatch={this.state.didWatch}/>
         </React.Fragment>
 
         }

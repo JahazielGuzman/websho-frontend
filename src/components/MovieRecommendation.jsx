@@ -16,7 +16,7 @@ class MovieRecommendation extends Component {
       super(props);
     }
 
-    setMovies(list1, list2) {
+    setMovies(list1, list2=this.state.movies) {
       this.setState(
         {movies: [...list1, ...list2]},
         () => this.state.movies[0].movies[6] ?
@@ -35,6 +35,18 @@ class MovieRecommendation extends Component {
         }
       })
 
+    }
+
+    updateCustomMovies() {
+
+      this.getCustomMovies().then(res => res.json())
+      .then(
+        (customMovies) => 
+        this.setState(
+          {customMovies: customMovies},
+          () => this.setMovies(customMovies)
+        )
+      )
     }
 
     // ******************************
@@ -65,14 +77,15 @@ class MovieRecommendation extends Component {
 
     }
 
-    componentDidUpdate() {
-      
-    }
     // ******************************
     // end component did mount
     // ******************************
 
     render() {
+
+      if (this.props.didWatch) {
+        this.updateCustomMovies();
+      }
 
       return (
         <div>
