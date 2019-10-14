@@ -143,7 +143,17 @@ class App extends Component {
         }
       })
       .then(res => res.json())
-      .then(trailer => this.setState({nowPlaying: trailer.results[0].key}) )
+      .then(
+        trailer => {
+          if (trailer.results[0]) {
+
+            console.log(trailer)
+            this.setState({nowPlaying: trailer.results[0].key});
+          }
+          else
+            alert('sorry! No trailer is available');
+        } 
+      )
       // now we want to do a fetch request
       // to an endpoint that creates a viewing, send the token and the movie id.
       // get back a confirmation that we go it to work
