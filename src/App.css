@@ -4,7 +4,6 @@ body {
 }
 
 .App {
-  text-align: center;
 }
 
 .App-logo {
@@ -62,7 +61,7 @@ body {
   min-height:  20px;
   position: relative;
   padding: 1em;
-  height: 2em;
+  height: 4em;
 }
 
 .logo {
