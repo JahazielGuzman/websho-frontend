@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import MovieTile from './movieTile'
+import MovieTile from './MovieTile'
 import '../App.css';
 
 const URL = process.env.REACT_APP_BACKEND

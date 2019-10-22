@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import Youtube from 'react-youtube';
 import logo from './logo.svg';
-import MovieDetail from './components/movieDetails'
+import MovieDetail from './components/MovieDetail'
 import ShowSignup from './components/ShowSignup'
 import Banner from './components/Banner'
 import MovieRecommendation from './components/MovieRecommendation'
