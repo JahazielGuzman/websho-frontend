@@ -20,7 +20,8 @@ class App extends Component {
     iframe: null,
     user: null,
     showLogin: false,
-    scrollY: 0,
+    bannerCat: null,
+    moviePoster: null,
     search_query: "",
     showSearch: false,
     resultList: {}
@@ -129,9 +130,14 @@ class App extends Component {
     this.setState({showLogin: true});
   }
 
-  showMovie = (movie) => {
-    if (!this.state.showSearch)
-      this.setState({movieDeets: movie})
+  // Input: A JSON object with movie data. set this as the state of movieDeets
+  // then call playMovie function with the movie as an argument to play the movie
+  showMovie = (movie, cat=null) => {
+    // only show if we are not in the search screen
+    if (!this.state.showSearch) {
+      let scrollY = window.scrollY;
+      this.setState({movieDeets: movie, bannerCat: cat})
+    }
     else
       this.playMovie(movie);
   }
@@ -231,14 +237,7 @@ class App extends Component {
     }
 
     if (this.state.nowPlaying == null) {
-      if (this.state.movieDeets != null && this.state.showSearch != true)
-        return (
-            <MovieDetail 
-              movie={this.state.movieDeets} 
-              playMovie={this.playMovie} 
-              scrollY={this.state.scrollY}
-            />
-        )
+      if (this.state.movieDeets != null && this.state.showSearch != true){}
     }
     else
       return (
@@ -267,7 +266,15 @@ class App extends Component {
           <ShowSignup onLogin={this.login} onSignup={this.signup} />
         :
         <React.Fragment>
-          <MovieRecommendation user={this.state.user} showMovie={this.showMovie} updateWatched={this.updateWatched} didWatch={this.state.didWatch}/>
+          <MovieRecommendation
+            bannerCat={this.state.bannerCat}
+            movieDeets={this.state.movieDeets} 
+            playMovie={this.playMovie}
+            user={this.state.user} 
+            showMovie={this.showMovie} 
+            updateWatched={this.updateWatched} 
+            didWatch={this.state.didWatch}
+          />
         </React.Fragment>
 
         }

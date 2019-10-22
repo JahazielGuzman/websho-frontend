@@ -93,8 +93,15 @@ class MovieRecommendation extends Component {
         {
           (this.state.movies) ?
           this.state.movies.map(
-            mov =>
-            <MovieTile key={mov.cat} cat={mov.cat} showMovie={this.props.showMovie} movies={mov.movies}/>
+            (mov, index) =>
+            <MovieTile 
+              placeDeets={(this.props.bannerCat == null && index == 0) ? true : this.props.bannerCat == mov.cat} 
+              key={mov.cat} 
+              cat={mov.cat}
+              movieDeets={this.props.movieDeets}
+              showMovie={this.props.showMovie}
+              playMovie={this.props.playMovie}
+              movies={mov.movies}/>
           ):
           null
         }

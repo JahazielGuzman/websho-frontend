@@ -3,8 +3,10 @@ import '../App.css';
 
 function MovieDetail(props) {
 
+    let customStyle = {backgroundImage: `url(${props.movie.backdrop})`};
+
     return (
-      <div className="movie-backdrop" style={{backgroundImage: `url(${props.movie.backdrop})`}}>
+      <div className="movie-backdrop" style={customStyle}>
         <div className="movie-deets">
           <h1>{props.movie.title}</h1>
           <h4>{props.movie.release ? props.movie.release.split('-')[0] : null}</h4>
