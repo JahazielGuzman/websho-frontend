@@ -20,6 +20,7 @@ class App extends Component {
     iframe: null,
     user: null,
     showLogin: false,
+    scrollY: 0,
     search_query: "",
     showSearch: false,
     resultList: {}
@@ -129,7 +130,10 @@ class App extends Component {
   }
 
   showMovie = (movie) => {
-    this.setState({movieDeets: movie})
+    if (!this.state.showSearch)
+      this.setState({movieDeets: movie})
+    else
+      this.playMovie(movie);
   }
 
   playMovie = (movie) => {
@@ -227,28 +231,34 @@ class App extends Component {
     }
 
     if (this.state.nowPlaying == null) {
-      if (this.state.movieDeets != null)
+      if (this.state.movieDeets != null && this.state.showSearch != true)
         return (
-            <MovieDetail movie={this.state.movieDeets} playMovie={this.playMovie} />
+            <MovieDetail 
+              movie={this.state.movieDeets} 
+              playMovie={this.playMovie} 
+              scrollY={this.state.scrollY}
+            />
         )
     }
     else
-    return <Youtube
-      id="player"
-      videoId={this.state.nowPlaying ? this.state.nowPlaying : ''}
-      opts={opts}
-      onReady={this._onReady}
-      onStateChange={this._onStateChange}
-    />
+      return (
+        <Youtube
+          id="player"
+          videoId={this.state.nowPlaying ? this.state.nowPlaying : ''}
+          opts={opts}
+          onReady={this._onReady}
+          onStateChange={this._onStateChange}
+        />
+      )
   }
 
 
   render () {
 
-
     return (
-      <div className="App">
+      <React.Fragment>
         <Banner user={this.state.user} showHome={this.showHome} logout={this.logout} onSearchSubmit={this.onSearchSubmit} onClickSignIn={this.onClickSignIn}/>
+        {this.showYoutube()}
         {
           this.state.showLogin || this.state.showSearch ?
           this.state.showSearch ?
@@ -257,12 +267,11 @@ class App extends Component {
           <ShowSignup onLogin={this.login} onSignup={this.signup} />
         :
         <React.Fragment>
-          {this.showYoutube()}
           <MovieRecommendation user={this.state.user} showMovie={this.showMovie} updateWatched={this.updateWatched} didWatch={this.state.didWatch}/>
         </React.Fragment>
 
         }
-      </div>
+      </React.Fragment>
     );
   }
 }

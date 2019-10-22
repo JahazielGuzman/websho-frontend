@@ -15,7 +15,7 @@ class ShowSignup extends Component {
 
   render() {
     return (
-    <section className="section">
+    <div className="columns">
       <div className="container">
         <form
           className="login-box"
@@ -80,7 +80,7 @@ class ShowSignup extends Component {
             <button>Signup</button>
           </form>
         </div>
-      </section>
+      </div>
     );
   }
 }

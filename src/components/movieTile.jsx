@@ -9,7 +9,7 @@ class MovieTile extends Component {
   render() {
     return (
       <React.Fragment>
-        <h1>{this.props.cat}</h1>
+        <h1 className="movie-list-name">{this.props.cat}</h1>
         <div className="movie-list">
           {
             this.props.movies.map(

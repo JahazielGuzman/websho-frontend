@@ -1,10 +1,9 @@
-body {
+html, body {
+  height: 100%;
   background-color: black;
   color: white;
 }
 
-.App {
-}
 
 .App-logo {
   animation: App-logo-spin infinite 20s linear;
@@ -21,6 +20,13 @@ body {
   justify-content: center;
   font-size: calc(10px + 2vmin);
   color: white;
+}
+
+.banner {
+  min-height:  20px;
+  position: relative;
+  padding: 1em;
+  height: 4em;
 }
 
 .session-change {
@@ -57,12 +63,6 @@ body {
   border: 0px;
 }
 
-.banner {
-  min-height:  20px;
-  position: relative;
-  padding: 1em;
-  height: 4em;
-}
 
 .logo {
   font-family: 'Ultra', serif;
@@ -124,8 +124,8 @@ body {
 .movie-tile {
   display: inline-block;
   height: 250px;
-  width: 150px;
-  margin:10px 10px;
+  width: 167px;
+  margin:0px 10px;
   background-size: cover;
 }
 
@@ -151,8 +151,11 @@ body {
 
 .movie-deets h1 {
   font-size: 3em;
+}
 
-
+.movie-list-name {
+  font-size: 2em;
+  font-weight: bold;
 }
 
 .movie-tile:hover {

@@ -9,7 +9,7 @@ class Banner extends Component {
 
   render() {
     return (
-      <header className="banner">
+      <div className="banner">
         <div className="logo" onClick={this.props.showHome} >Websho&apos;</div>
         {this.props.user ? <SearchBar onSearchSubmit={this.props.onSearchSubmit} /> : null}
         <div className="user-panel">
@@ -28,7 +28,7 @@ class Banner extends Component {
             }
           </span>
         </div>
-      </header>
+      </div>
     );
   }
 }
