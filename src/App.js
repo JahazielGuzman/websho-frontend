@@ -27,6 +27,8 @@ class App extends Component {
     resultList: {}
   }
 
+  // Once app is mounted, we will log user in if they have a JWT token and
+  // we will store the user info in state and let the user watch movies
   componentDidMount() {
     if (localStorage.getItem('token')) {
       fetch(`${URL}/establish_session`, {
@@ -42,6 +44,8 @@ class App extends Component {
     }
   }
 
+  // Input: JSON object with username and password information, submit a POST request to login route
+  // and then return a JWT token to store on the client side
   login = (formInfo) => {
 
     fetch(`${URL}/login`, {
@@ -62,20 +66,9 @@ class App extends Component {
      });
   }
 
-  showSuggestions = () => {
-    // fetch(`${URL}/search_short`, {
-    //   method: "POST",
-    //   headers: {
-    //     "Content-Type": "application/json",
-    //     "Accept": "application/json",
-    //     "Authorization": localStorage.setItem('token', data.token.split(' ')[1])
-    //   },
-    //   body: JSON.stringify(this.state.search_query)
-    // })
-    // .then(res => res.json())
-    // .then(suggestions => )
-  }
-
+  // accept search text as a string, submit to the /search_movies route and
+  // and return a JSON object with a category member and an array of movies matching
+  // the search string
   onSearchSubmit = (search_query) => {
     this.setState({search_query: search_query, showSearch: true})
     fetch(`${URL}/search_movies`, {
@@ -92,10 +85,11 @@ class App extends Component {
 
   exitSearch = (e) => {
     e.preventDefault();
-    console.log('exiting...')
     this.setState({search_query: "", showSearch: false});
   }
 
+  // Show the main page with all movie results by
+  // setting showLogin and showSearch booleans to false
   showHome = () => {
     this.setState({showLogin: false, showSearch: false})
   }
@@ -146,7 +140,6 @@ class App extends Component {
     // check if user is authenticated
     if (this.state.user) {
       // if is authenticated then play movie
-      console.log(movie.original_id)
       fetch(`https://api.themoviedb.org/3/movie/${movie.original_id}/videos?api_key=${process.env.REACT_APP_TMDB_API_KEY}&language=en-US`, {
         headers: {
           "Accept": "application/json"
@@ -157,7 +150,6 @@ class App extends Component {
         trailer => {
           if (trailer.results[0]) {
 
-            console.log(trailer)
             this.setState({nowPlaying: trailer.results[0].key});
           }
           else

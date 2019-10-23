@@ -130,12 +130,12 @@ html, body {
 }
 
 .movie-backdrop {
+  position: relative;
   height: 450px;
   width: auto;
   background-color: white;
   background-size: cover;
   background-position: 50%;
-  position: relative;
 }
 
 .movie-deets {
