@@ -146,7 +146,7 @@ label.label {
 .exit-search {
   position: relative;
   left: 1%;
-  background-color: #262626;
+  background-color: rgba(0, 0, 0, 0);
   border: #262626;
   color: white;
   font-size: 2em;

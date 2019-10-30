@@ -16,7 +16,6 @@ class SearchResults extends Component {
         &lt;&nbsp;&nbsp;&nbsp;&nbsp;Back to movies
       </button>
       <div>
-        <h1>{this.props.searchQuery}</h1>
       </div>
         <div>
         {

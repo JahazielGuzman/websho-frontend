@@ -259,6 +259,7 @@ class App extends Component {
         :
         <React.Fragment>
           <MovieRecommendation
+            key={this.state.user ? 1 : 2}
             bannerCat={this.state.bannerCat}
             movieDeets={this.state.movieDeets} 
             playMovie={this.playMovie}
