@@ -1,20 +1,36 @@
 import React, { Component } from 'react';
 import '../App.css';
 
-function MovieDetail(props) {
+class MovieDetail extends Component {
 
-    let customStyle = {backgroundImage: `url(${props.movie.backdrop})`};
+  constructor(props) {
+    super(props)
+  }
+
+  componentDidMount() {
+
+    window.scrollTo({
+      top: this.refs.backdrop.offsetTop,
+      behavior: "smooth"
+    })
+  }
+
+  render () {
 
     return (
-      <div className="movie-backdrop" style={customStyle}>
+      <div 
+        className="movie-backdrop" 
+        style={{backgroundImage: `url(${this.props.movie.backdrop})`}}
+        ref="backdrop">
         <div className="movie-deets">
-          <h1>{props.movie.title}</h1>
-          <h4>{props.movie.release ? props.movie.release.split('-')[0] : null}</h4>
-          <p>{(props.movie.overview.length > 256) ? props.movie.overview.substr(0, 256) + "..." : props.movie.overview}</p>
-          <button className="play-button" onClick={() => props.playMovie(props.movie)}>play movie</button>
+          <h1>{this.props.movie.title}</h1>
+          <h4>{this.props.movie.release ? this.props.movie.release.split('-')[0] : null}</h4>
+          <p>{(this.props.movie.overview.length > 256) ? this.props.movie.overview.substr(0, 256) + "..." : this.props.movie.overview}</p>
+          <button className="play-button" onClick={() => this.props.playMovie(this.props.movie)}>play movie</button>
         </div>
       </div>
     );
+  }
 }
 
 export default MovieDetail;

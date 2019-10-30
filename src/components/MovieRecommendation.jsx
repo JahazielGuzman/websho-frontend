@@ -89,7 +89,7 @@ class MovieRecommendation extends Component {
       }
 
       return (
-        <div>
+        <div class="movie-recommendations">
         {
           (this.state.movies) ?
           this.state.movies.map(

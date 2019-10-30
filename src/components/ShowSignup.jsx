@@ -15,10 +15,11 @@ class ShowSignup extends Component {
 
   render() {
     return (
-    <div className="columns">
-      <div className="container">
+    <React.Fragment>
+    <div className="login-background"></div>
+    <div className="user-box">
         <form
-          className="login-box"
+          className="login-box login-signup-box"
         onSubmit={
           (event) =>  {
             event.preventDefault();
@@ -26,13 +27,14 @@ class ShowSignup extends Component {
           }
         }
         >
-          <h1>Login</h1>
+          <h1 class="login-signup-header">Login</h1>
           <div className="field">
             <label htmlFor="login-username" className="label">username:</label>
             <div className="control">
               <input
                 id="login-username"
                 type="text"
+                className="input"
                 onChange={(event) => {
                   this.setState({loginUsername: event.target.value})
                 }}
@@ -42,15 +44,18 @@ class ShowSignup extends Component {
           <div className="field">
             <label htmlFor="login-password" className="label">password:</label>
             <div class="control">
-              <input id="login-password" type="password" onChange={(event) => this.setState({loginPassword: event.target.value})} />
+              <input 
+                id="login-password" 
+                type="password" 
+                className="input"
+                onChange={(event) => this.setState({loginPassword: event.target.value})} 
+              />
             </div>
           </div>
-          <button>Login</button>
+          <button className="login-signup-btn">Login</button>
         </form>
-        </div>
-        <div class="container">
           <form
-            className="signup-box"
+            className="signup-box login-signup-box"
             onSubmit={
               (event) =>  {
                 event.preventDefault();
@@ -58,7 +63,7 @@ class ShowSignup extends Component {
               }
             }
             >
-            <h1>Signup</h1>
+            <h1 class="login-signup-header">Signup</h1>
             <div className="field">
               <label htmlFor="signup-username" className="label">username:</label>
               <div class="control">
@@ -77,10 +82,10 @@ class ShowSignup extends Component {
                 <input className="input" id="signup-password" type="password" onChange={(event) => this.setState({signupPassword: event.target.value})} />
               </div>
             </div>
-            <button>Signup</button>
+            <button className="login-signup-btn">Signup</button>
           </form>
-        </div>
       </div>
+      </React.Fragment>
     );
   }
 }

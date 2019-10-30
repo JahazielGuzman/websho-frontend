@@ -10,7 +10,7 @@ class Banner extends Component {
   render() {
     return (
       <div className="banner">
-        <div className="logo" onClick={this.props.showHome} >Websho&apos;</div>
+        <div className="logo" onClick={this.props.showHome} >WebSho</div>
         {this.props.user ? <SearchBar onSearchSubmit={this.props.onSearchSubmit} /> : null}
         <div className="user-panel">
           <span>
@@ -18,13 +18,14 @@ class Banner extends Component {
           </span>
           <span>
             {
-              (this.props.user) ?
-              <button className="session-change" onClick={this.props.logout}>
-                logout
-              </button>:
-              <button className="session-change" onClick={this.props.onClickSignIn}>
-                login
-              </button>
+              (this.props.showLogin) ? "" :
+                (this.props.user) ?
+                <button className="session-change" onClick={this.props.onClickSignOut}>
+                  Sign Out
+                </button>:
+                <button className="session-change" onClick={this.props.onClickSignIn}>
+                  Sign In
+                </button>
             }
           </span>
         </div>

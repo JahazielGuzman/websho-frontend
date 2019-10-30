@@ -115,7 +115,7 @@ class App extends Component {
      });
   }
 
-  logout = () => {
+  onClickSignOut = () => {
     this.setState({user: null});
     localStorage.setItem('token', null)
   }
@@ -248,7 +248,7 @@ class App extends Component {
 
     return (
       <React.Fragment>
-        <Banner user={this.state.user} showHome={this.showHome} logout={this.logout} onSearchSubmit={this.onSearchSubmit} onClickSignIn={this.onClickSignIn}/>
+        <Banner user={this.state.user} showLogin={this.state.showLogin} showHome={this.showHome} onClickSignOut={this.onClickSignOut} onSearchSubmit={this.onSearchSubmit} onClickSignIn={this.onClickSignIn}/>
         {this.showYoutube()}
         {
           this.state.showLogin || this.state.showSearch ?

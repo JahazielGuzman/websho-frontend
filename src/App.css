@@ -4,49 +4,108 @@ html, body {
   color: white;
 }
 
-
-.App-logo {
-  animation: App-logo-spin infinite 20s linear;
-  height: 40vmin;
-  pointer-events: none;
+#root {
+  height: 100%;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
-}
 
 .banner {
+
+  background-color: rgba(0,0,0,0.9);
   min-height:  20px;
-  position: relative;
+  position: fixed;
+  z-index: 10;
   padding: 1em;
-  height: 4em;
+  height: 5em;
+  width: 100%;
+}
+
+.movie-recommendations {
+  position: relative;
+  top: 5rem;
 }
 
 .session-change {
-  background-color: black;
-  border: 1px solid black;
+  background-color: #106bcc;
+  border: #106bcc;
   color: white;
+  font-size: 1em;
+  padding: 0.5em 1em;
+  border-radius: 10px;
+  font-weight: 500;
+}
+
+.login-background {
+
+  background: url(https://i0.wp.com/www.mominzurich.com/wp-content/uploads/2014/04/bokeh-cover-bg.jpg);
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  filter: blur(8px);
+  -webkit-filter: blur(8px);
+  height: 100%;
+}
+
+::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
+  color: black;
+  opacity: 1; /* Firefox */
+}
+
+:-ms-input-placeholder { /* Internet Explorer 10-11 */
+  color: black;
+}
+
+::-ms-input-placeholder { /* Microsoft Edge */
+  color: black;
+}
+
+label.label {
+  color: #8c8b8b;
 }
 
 .user-box {
-  position: relative;
+  position: absolute;
+  width: 100%;
+  min-height: 400px;
+  top: 5rem;
+}
+
+.login-signup-btn {
+
+    height: 2rem;
+    width: 100%;
+    font-size: 1rem;
+    font-weight: 500;
+    background-color: #106bcc;
+    border: #106bcc;
+    border-radius: 5px;
+    color: white;
+    margin: 1rem 0rem;
+}
+
+.login-signup-header {
+
+  font-size: 2rem;
+  font-weight: bold;
+  margin: 1rem 0rem;
+  width: 20rem;
 }
 
 .login-box {
   position: absolute;
-  left: 30%;
+  left: 22%;
 }
 
 .signup-box {
   position: absolute;
-  right: 30%;
+  right: 22%;
+}
+
+.login-signup-box {
+    background-color: rgba(0, 0, 0, 0.76);
+    padding: 4rem;
+    border-radius: 10px;
+    height: 35rem;
 }
 
 .App-link {
@@ -65,10 +124,13 @@ html, body {
 
 
 .logo {
-  font-family: 'Ultra', serif;
+  cursor: pointer;
+  font-family: 'Oswald', sans-serif;
+  font-weight: bold;
+  font-size: 2rem;
   color: #106bcc;
   float: left;
-  position: absolute;
+  position: relative;
   left: 1%;
 }
 
@@ -111,7 +173,7 @@ html, body {
 
 .user-panel {
   float: left;
-  position: absolute;
+  position: relative;
   left: 80%;
 }
 
