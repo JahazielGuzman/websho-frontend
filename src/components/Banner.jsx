@@ -11,7 +11,7 @@ class Banner extends Component {
     return (
       <div className="banner">
         <div className="logo" onClick={this.props.showHome} >WebSho</div>
-        <SearchBar onSearchSubmit={this.props.onSearchSubmit} />
+        <SearchBar key={this.props.showLogin} onSearchSubmit={this.props.onSearchSubmit} />
         <div className="user-panel">
           <span className="user-name">
             {this.props.user ? this.props.user.username : ''}

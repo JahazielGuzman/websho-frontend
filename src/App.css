@@ -97,12 +97,12 @@ label.label {
 
 .login-box {
   position: absolute;
-  left: 22%;
+  left: 15%;
 }
 
 .signup-box {
   position: absolute;
-  right: 22%;
+  right: 15%;
 }
 
 .login-signup-box {
@@ -118,6 +118,7 @@ label.label {
 
 .play-button {
   background-color: #403f3f;
+  margin-top: 10px;
   width: 8em;
   color: red;
   font-size: 1em;
