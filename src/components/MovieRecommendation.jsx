@@ -37,14 +37,17 @@ class MovieRecommendation extends Component {
 
     updateCustomMovies() {
 
-      this.getCustomMovies().then(res => res.json())
-      .then(
-        (customMovies) => 
-        this.setState(
-          {customMovies: customMovies},
-          () => this.setMovies(customMovies, this.state.allMovies)
+      if (this.props.user) {
+        
+        this.getCustomMovies().then(res => res.json())
+        .then(
+          (customMovies) => 
+          this.setState(
+            {customMovies: customMovies},
+            () => this.setMovies(customMovies, this.state.allMovies)
+          )
         )
-      )
+      }
     }
 
     // ******************************

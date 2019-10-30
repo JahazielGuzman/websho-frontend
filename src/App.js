@@ -129,7 +129,6 @@ class App extends Component {
   showMovie = (movie, cat=null) => {
     // only show if we are not in the search screen
     if (!this.state.showSearch) {
-      let scrollY = window.scrollY;
       this.setState({movieDeets: movie, bannerCat: cat})
     }
     else
@@ -138,24 +137,24 @@ class App extends Component {
 
   playMovie = (movie) => {
     // check if user is authenticated
-    if (this.state.user) {
-      // if is authenticated then play movie
-      fetch(`https://api.themoviedb.org/3/movie/${movie.original_id}/videos?api_key=${process.env.REACT_APP_TMDB_API_KEY}&language=en-US`, {
-        headers: {
-          "Accept": "application/json"
-        }
-      })
-      .then(res => res.json())
-      .then(
-        trailer => {
-          if (trailer.results[0]) {
+    // if is authenticated then play movie
+    fetch(`https://api.themoviedb.org/3/movie/${movie.original_id}/videos?api_key=${process.env.REACT_APP_TMDB_API_KEY}&language=en-US`, {
+      headers: {
+        "Accept": "application/json"
+      }
+    })
+    .then(res => res.json())
+    .then(
+      trailer => {
+        if (trailer.results[0]) {
 
-            this.setState({nowPlaying: trailer.results[0].key});
-          }
-          else
-            alert('sorry! No trailer is available');
-        } 
-      )
+          this.setState({nowPlaying: trailer.results[0].key});
+        }
+        else
+          alert('sorry! No trailer is available');
+      })
+
+    if (this.state.user) {
       // now we want to do a fetch request
       // to an endpoint that creates a viewing, send the token and the movie id.
       // get back a confirmation that we go it to work
@@ -168,10 +167,6 @@ class App extends Component {
         },
         body: JSON.stringify({movie_id: movie.id})
       })
-    }
-    else {
-      // otherwise then we need to ask them to sign in
-      this.setState({showLogin: true});
     }
   }
 
