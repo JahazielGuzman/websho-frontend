@@ -16,7 +16,7 @@ class MovieRecommendation extends Component {
       super(props);
     }
 
-    setMovies(list1, list2=this.state.movies) {
+    setMovies(list1, list2) {
       this.setState(
         {movies: [...list1, ...list2]},
         () => this.props.showMovie(this.state.movies[0].movies[0])
@@ -42,7 +42,7 @@ class MovieRecommendation extends Component {
         (customMovies) => 
         this.setState(
           {customMovies: customMovies},
-          () => this.setMovies(customMovies)
+          () => this.setMovies(customMovies, this.state.allMovies)
         )
       )
     }
@@ -62,7 +62,7 @@ class MovieRecommendation extends Component {
           .then((customMovies) =>
             this.setState(
               {customMovies: customMovies, allMovies: allMovies},
-              () => {console.log(customMovies);this.setMovies(customMovies, allMovies)}
+              () => this.setMovies(customMovies, allMovies)
             )
           )
         }
@@ -70,7 +70,7 @@ class MovieRecommendation extends Component {
           // return the original movies that were passed in
           this.setState(
             {allMovies: allMovies},
-            () => this.setMovies(allMovies)
+            () => this.setMovies(this.state.customMovies, allMovies)
           );
         }
 
@@ -89,7 +89,7 @@ class MovieRecommendation extends Component {
       }
 
       return (
-        <div class="movie-recommendations">
+        <div className="movie-recommendations">
         {
           (this.state.movies) ?
           this.state.movies.map(

@@ -13,10 +13,10 @@ class Banner extends Component {
         <div className="logo" onClick={this.props.showHome} >WebSho</div>
         {this.props.user ? <SearchBar onSearchSubmit={this.props.onSearchSubmit} /> : null}
         <div className="user-panel">
-          <span>
+          <span className="user-name">
             {this.props.user ? this.props.user.username : ''}
           </span>
-          <span>
+          <span className="session-button">
             {
               (this.props.showLogin) ? "" :
                 (this.props.user) ?

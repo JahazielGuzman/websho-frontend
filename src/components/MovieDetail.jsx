@@ -10,8 +10,7 @@ class MovieDetail extends Component {
   componentDidMount() {
 
     window.scrollTo({
-      top: this.refs.backdrop.offsetTop,
-      behavior: "smooth"
+      top: this.refs.backdrop.offsetTop
     })
   }
 

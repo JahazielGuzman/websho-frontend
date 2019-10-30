@@ -67,7 +67,7 @@ label.label {
   position: absolute;
   width: 100%;
   min-height: 400px;
-  top: 5rem;
+  top: 6rem;
 }
 
 .login-signup-btn {
@@ -136,10 +136,11 @@ label.label {
 
 .search-section {
   position: relative;
+  top: 6rem;
 }
 
 .exit-search {
-  position: absolute;
+  position: relative;
   left: 1%;
   background-color: #262626;
   border: #262626;
@@ -159,6 +160,7 @@ label.label {
 
 .search-bar {
   background-color: #323030;
+  font-size: 1rem;
   border: 1px solid black;
   border-radius: 5px;
   padding: 0.4em;
@@ -175,6 +177,10 @@ label.label {
   float: left;
   position: relative;
   left: 80%;
+}
+
+.user-name {
+  margin-right: 1rem;
 }
 
 .movie-list {
