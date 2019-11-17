@@ -1,7 +1,13 @@
+# Websho
+
 Websho is a movie streaming app which customizes its selection to the users viewing history.
 Choose from a catalog of 1000+ movies from more than 10 genres. You can also browse movies more easily by using the search functionality. 
 
 NOTE: You can also stream trailers of movies.
+
+This repository is for the frontend React app, visit [here](https://github.com/JahazielGuzman/websho) for the backend code 
+
+[Click here for the hosted app.](websho.jahazielguzman.com) The project was deployed using surge.
 
 This project was created in Rails, React and Postgres.
 
@@ -14,7 +20,6 @@ Some of the techniques used to create this app:
 
 To run this project first make sure you are running the rails. Then run 
 
-npm install
-npm start
+# `npm install`
+# `npm start`
 
-Project is deployed with surge.
