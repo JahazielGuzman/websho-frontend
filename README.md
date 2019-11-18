@@ -7,7 +7,7 @@ NOTE: You can also stream trailers of movies.
 
 This repository is for the frontend React app, visit [here](https://github.com/JahazielGuzman/websho) for the backend code 
 
-[Click here for the hosted app.](websho.jahazielguzman.com) The project was deployed using surge.
+[Click here for the hosted app.](http://websho.jahazielguzman.com) The project was deployed using surge.
 
 This project was created in Rails, React and Postgres.
 
