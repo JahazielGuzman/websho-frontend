@@ -18,8 +18,15 @@ Some of the techniques used to create this app:
 + Generated search results based on movie search queries.
 + Used the react-youtube npm package to stream youtube trailers fetched from TheMovieDB.
 
-To run this project first make sure you are running the rails. Then run 
+To run this project first make sure you are running the rails server. Then run 
 
-# `npm install`
-# `npm start`
+### 1. `npm install`
+### 2. `npm start`
 
+And the app should start at localhost:3000
+
+To deploy run:
+
+### `npm run build`
+
+Then you can deploy the static files to any static site generator of your choice.
