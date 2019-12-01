@@ -24,6 +24,7 @@ class App extends Component {
     moviePoster: null,
     search_query: "",
     showSearch: false,
+    showRating: false,
     resultList: {}
   }
 
@@ -170,6 +171,9 @@ class App extends Component {
     }
   }
 
+  // This callback fires when the player is exited via the cancel button.
+  // nowPlaying is now null and flip the didWatch switch to trigger a rerender of MovieRecommendations
+  // component so that we see the movie we just watch in our recent list.
   stopPlaying = (player) => {
     this.setState({nowPlaying: null, didWatch: true}, () => this.setState({didWatch: false}))
     player.destroy();
