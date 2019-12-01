@@ -1,68 +1,32 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# Websho
 
-## Available Scripts
+Websho is a movie streaming app which customizes its selection to the users viewing history.
+Choose from a catalog of 1000+ movies from more than 10 genres. You can also browse movies more easily by using the search functionality. 
 
-In the project directory, you can run:
+NOTE: You can also stream trailers of movies.
 
-### `npm start`
+This repository is for the frontend React app, visit [here](https://github.com/JahazielGuzman/websho) for the backend code 
 
-Runs the app in the development mode.<br>
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+[Click here for the hosted app.](http://websho.jahazielguzman.com) The project was deployed using surge.
 
-The page will reload if you make edits.<br>
-You will also see any lint errors in the console.
+This project was created in Rails, React and Postgres.
 
-### `npm test`
+Some of the techniques used to create this app:
++ Created 4 Active Record models with PostgreSQL to store users, reviews, viewership patterns and a catalog of 1000+ movies.
++ Seeded database with movie metadata obtained from TheMovieDB API.
++ Created custom movie recommendation lists in Rails which were tailored to each users viewing history.
++ Generated search results based on movie search queries.
++ Used the react-youtube npm package to stream youtube trailers fetched from TheMovieDB.
 
-Launches the test runner in the interactive watch mode.<br>
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+To run this project first make sure you are running the rails server. Then run 
+
+### 1. `npm install`
+### 2. `npm start`
+
+And the app should start at localhost:3000
+
+To deploy run:
 
 ### `npm run build`
 
-Builds the app for production to the `build` folder.<br>
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.<br>
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (Webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/code-splitting
-
-### Analyzing the Bundle Size
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size
-
-### Making a Progressive Web App
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app
-
-### Advanced Configuration
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/advanced-configuration
-
-### Deployment
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/deployment
-
-### `npm run build` fails to minify
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
+Then you can deploy the static files to any static site generator of your choice.
