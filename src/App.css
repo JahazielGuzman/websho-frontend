@@ -12,22 +12,135 @@ button {
   cursor: pointer;
 }
 
+@media only screen and (max-width: 760px) {
 
+    .logo {
+    cursor: pointer;
+    font-family: 'Oswald', sans-serif;
+    font-weight: bold;
+    font-size: 2rem;
+    color: #106bcc;
+    float: left;
+    width: 1.3ch;
+    overflow: hidden;
+    position: relative;
+    left: 1%;
+  }
+
+  .search-box {
+    position: relative;
+  }
+
+  .user-name {
+    display: block;
+  }
+
+  .session-button {
+    display: block;
+  }
+
+  .movie-list-name {
+    font-size: 1rem;
+    font-weight: bold;
+  }
+
+  .movie-deets {
+    position: absolute;
+    padding: 0px 10px;
+    top: 50%;
+    height: 50%;
+    width: 100%;
+    font-size: 0.75rem;
+    background-color: rgba(1,1,1,0.5);
+    box-shadow: -1em -0.1em 2em black;
+    text-align: left;
+  }
+
+}
+
+@media only screen and (min-width: 761px) {
+
+
+  .logo {
+    cursor: pointer;
+    font-family: 'Oswald', sans-serif;
+    font-weight: bold;
+    font-size: 2rem;
+    color: #106bcc;
+    float: left;
+    position: relative;
+    left: 1%;
+  }
+
+  .search-box {
+    float: left;
+    position: absolute;
+    left: 40%;
+  }
+
+  .hamburger {
+
+    right: 0;
+  }
+
+  .user-name {
+    margin-right: 1rem;
+  }
+
+  .movie-list-name {
+    font-size: 2rem;
+    font-weight: bold;
+  }
+
+  .movie-deets {
+    position: absolute;
+    padding: 0px 10px;
+    top: 50%;
+    height: 50%;
+    width: 100%;
+    background-color: rgba(1,1,1,0.5);
+    box-shadow: -1em -0.1em 2em black;
+    text-align: left;
+  }
+}
+
+
+
+/* banner styles */
 .banner {
 
   background-color: rgba(0,0,0,0.9);
   min-height:  20px;
   position: fixed;
   z-index: 10;
-  padding: 1em;
-  height: 5em;
+  padding: 1rem;
+  height: 5rem;
   width: 100%;
 }
 
-.movie-recommendations {
-  position: relative;
-  top: 5rem;
+
+.search-bar {
+  background-color: #323030;
+  font-size: 1rem;
+  border: 1px solid black;
+  border-radius: 5px;
+  padding: 0.4em;
+  color: white;
 }
+
+.search-button {
+  background-color: black;
+  border: 1px solid black;
+  border-radius: 5px;
+}
+
+.user-panel {
+  float: left;
+  position: relative;
+  left: 80%;
+}
+
+
 
 .session-change {
   background-color: #106bcc;
@@ -38,6 +151,77 @@ button {
   border-radius: 10px;
   font-weight: 500;
 }
+
+
+/* end banner styles */
+
+/* ***************** */
+
+/* movie backdrop styles */
+
+.movie-backdrop {
+  position: relative;
+  height: 450px;
+  width: auto;
+  background-color: white;
+  background-size: cover;
+  background-position: 50%;
+}
+
+
+
+.movie-deets h1 {
+  font-size: 3em;
+}
+
+.play-button {
+  background-color: #403f3f;
+  margin-top: 10px;
+  width: 8em;
+  color: red;
+  font-size: 1em;
+  font-weight: bold;
+  border-radius: 5px;
+  border: 0px;
+}
+
+/* end movie backdrop styles */
+
+/* ************************* */
+
+/* movie playlist styles */
+
+.movie-list {
+  overflow: auto;
+  height: 280px;
+  white-space: nowrap;
+}
+
+.movie-tile {
+  display: inline-block;
+  height: 250px;
+  width: 167px;
+  margin:0px 10px;
+  background-size: cover;
+}
+
+
+
+
+
+.movie-tile:hover {
+  box-shadow: 0.2em 0.2em 1em grey;
+}
+
+.movie-recommendations {
+  position: relative;
+  top: 5rem;
+}
+
+/* end movie playlist styles */
+
+
+
 
 .login-background {
 
@@ -116,28 +300,7 @@ label.label {
   color: #61dafb;
 }
 
-.play-button {
-  background-color: #403f3f;
-  margin-top: 10px;
-  width: 8em;
-  color: red;
-  font-size: 1em;
-  font-weight: bold;
-  border-radius: 5px;
-  border: 0px;
-}
 
-
-.logo {
-  cursor: pointer;
-  font-family: 'Oswald', sans-serif;
-  font-weight: bold;
-  font-size: 2rem;
-  color: #106bcc;
-  float: left;
-  position: relative;
-  left: 1%;
-}
 
 .search-section {
   position: relative;
@@ -155,91 +318,4 @@ label.label {
 
 .exit-search:hover {
   color: grey;
-}
-
-.search-box {
-  float: left;
-  position: absolute;
-  left: 40%;
-}
-
-.search-bar {
-  background-color: #323030;
-  font-size: 1rem;
-  border: 1px solid black;
-  border-radius: 5px;
-  padding: 0.4em;
-  color: white;
-}
-
-.search-button {
-  background-color: black;
-  border: 1px solid black;
-  border-radius: 5px;
-}
-
-.user-panel {
-  float: left;
-  position: relative;
-  left: 80%;
-}
-
-.user-name {
-  margin-right: 1rem;
-}
-
-.movie-list {
-  overflow: auto;
-  height: 280px;
-  white-space: nowrap;
-}
-
-.movie-tile {
-  display: inline-block;
-  height: 250px;
-  width: 167px;
-  margin:0px 10px;
-  background-size: cover;
-}
-
-.movie-backdrop {
-  position: relative;
-  height: 450px;
-  width: auto;
-  background-color: white;
-  background-size: cover;
-  background-position: 50%;
-}
-
-.movie-deets {
-  position: absolute;
-  padding: 0px 10px;
-  top: 50%;
-  height: 50%;
-  width: 100%;
-  background-color: rgba(1,1,1,0.5);
-  box-shadow: -1em -0.1em 2em black;
-  text-align: left;
-}
-
-.movie-deets h1 {
-  font-size: 3em;
-}
-
-.movie-list-name {
-  font-size: 2em;
-  font-weight: bold;
-}
-
-.movie-tile:hover {
-  box-shadow: 0.2em 0.2em 1em grey;
-}
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
 }
