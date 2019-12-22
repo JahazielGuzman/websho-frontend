@@ -29,6 +29,11 @@ button {
 
   .search-box {
     position: relative;
+    width: 80%;
+  }
+
+  .search-box form {
+    width: 100%;
   }
 
   .user-name {
@@ -56,6 +61,27 @@ button {
     text-align: left;
   }
 
+  .hamburger {
+
+    width: 60%;
+    right: -50%;
+    top: 0;
+    height: 100%;
+    position: fixed;
+    background-color: #151414;
+  }
+
+  .search-bar {
+    width: 80%;
+  }
+
+  .search-button {
+    width: 20%;
+  }
+
+  .user-panel {
+    position: relative;
+  }
 }
 
 @media only screen and (min-width: 761px) {
@@ -78,13 +104,15 @@ button {
     left: 40%;
   }
 
-  .hamburger {
-
-    right: 0;
-  }
 
   .user-name {
     margin-right: 1rem;
+  }
+
+  .user-panel {
+    float: left;
+    position: relative;
+    left: 80%;
   }
 
   .movie-list-name {
@@ -102,6 +130,7 @@ button {
     box-shadow: -1em -0.1em 2em black;
     text-align: left;
   }
+  
 }
 
 
@@ -118,27 +147,23 @@ button {
   width: 100%;
 }
 
+  .search-bar {
+    background-color: #323030;
+    font-size: 1rem;
+    border: 1px solid black;
+    border-radius: 5px;
+    padding: 0.4em;
+    color: white;
+  }
 
-.search-bar {
-  background-color: #323030;
-  font-size: 1rem;
-  border: 1px solid black;
-  border-radius: 5px;
-  padding: 0.4em;
-  color: white;
-}
+  .search-button {
+    background-color: black;
+    border: 1px solid black;
+    border-radius: 5px;
+  }
 
-.search-button {
-  background-color: black;
-  border: 1px solid black;
-  border-radius: 5px;
-}
 
-.user-panel {
-  float: left;
-  position: relative;
-  left: 80%;
-}
+
 
 
 
