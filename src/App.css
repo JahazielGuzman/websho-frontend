@@ -120,20 +120,20 @@ button {
     font-weight: bold;
   }
 
-  .movie-deets {
-    position: absolute;
-    padding: 0px 10px;
-    top: 50%;
-    height: 50%;
-    width: 100%;
-    background-color: rgba(1,1,1,0.5);
-    box-shadow: -1em -0.1em 2em black;
-    text-align: left;
-  }
   
 }
 
 
+.movie-deets {
+  position: absolute;
+  padding: 0px 10px;
+  top: 50%;
+  height: 55vh;
+  width: 100vw;
+  background-color: rgba(1,1,1,0.5);
+  box-shadow: -1em -0.1em 2em black;
+  text-align: left;
+}
 
 /* banner styles */
 .banner {
@@ -147,20 +147,20 @@ button {
   width: 100%;
 }
 
-  .search-bar {
-    background-color: #323030;
-    font-size: 1rem;
-    border: 1px solid black;
-    border-radius: 5px;
-    padding: 0.4em;
-    color: white;
-  }
+.search-bar {
+  background-color: #323030;
+  font-size: 1rem;
+  border: 1px solid black;
+  border-radius: 5px;
+  padding: 0.4em;
+  color: white;
+}
 
-  .search-button {
-    background-color: black;
-    border: 1px solid black;
-    border-radius: 5px;
-  }
+.search-button {
+  background-color: black;
+  border: 1px solid black;
+  border-radius: 5px;
+}
 
 
 
@@ -186,8 +186,10 @@ button {
 
 .movie-backdrop {
   position: relative;
-  height: 450px;
+  height: 55vh;
+  min-height: 50px;
   width: auto;
+  min-width: 320px;
   background-color: white;
   background-size: cover;
   background-position: 50%;
